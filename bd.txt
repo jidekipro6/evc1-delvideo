@@ -1,0 +1,38 @@
+-- eliminamos la base de datos
+drop database if exists bdtiendita;
+-- creamos la base d atos
+create database bdtiendita;
+-- señleccionamos la base de datos 
+use bdtiendita;
+
+drop table if exists t_categoria;
+create table t_categoria (
+codcat int primary key auto_increment,
+nomcat varchar (40)binary character set utf8 collate utf8_bin not null,
+estcat bit not null
+)engine=InnoDB character set utf8;
+drop table if exists t_producto;
+create table t_producto(
+codpro int primary key auto_increment,
+nompro varchar (40)binary character set utf8 collate utf8_bin not null,
+preproc double not null,
+preprov double not null,
+canpro double not null,
+estpro bit not null,
+codcat int not null,
+foreign key(codcat)references t_categoria(codcat)
+) engine=InnoDB character set utf8;
+
+-- insertamos los datos de categoria
+insert into t_categoria (nomcat,estcat)values ('bebida',1);
+insert into t_categoria (nomcat,estcat)values ('golosinas',1);
+
+-- insertamos los productos
+
+insert into t_producto (nompro,preproc,preprov,canpro,estpro,codcat)
+values ('kola barata 1L',2.5,3.80,25,1,1);
+insert into t_producto (nompro,preproc,preprov,canpro,estpro,codcat)
+values ('churrito dulce',0.30,1.00,30,1,2);
+
+select * from t_categoria;
+select * from t_producto;
